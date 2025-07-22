@@ -1,4 +1,4 @@
-# Setup Firebase untuk Autentikasi
+# Setup Firebase untuk Autentikasi Google
 
 ## Langkah-langkah Setup Firebase:
 
@@ -8,12 +8,13 @@
 3. Masukkan nama proyek Anda
 4. Ikuti langkah-langkah setup (bisa skip Google Analytics jika tidak diperlukan)
 
-### 2. Aktifkan Authentication
+### 2. Aktifkan Google Authentication
 1. Di Firebase Console, pilih proyek Anda
 2. Di sidebar kiri, klik "Authentication"
 3. Klik "Get started" atau "Mulai"
-4. Di tab "Sign-in method", aktifkan "Email/Password"
-5. Klik "Save"
+4. Di tab "Sign-in method", aktifkan "Google"
+5. Masukkan email support (opsional)
+6. Klik "Save"
 
 ### 3. Dapatkan Konfigurasi Firebase
 1. Di Firebase Console, klik ikon gear (⚙️) di sidebar kiri
@@ -38,12 +39,13 @@
    };
    ```
 
-### 5. Buat User untuk Testing
+### 5. Konfigurasi Domain yang Diizinkan
 1. Di Firebase Console, pilih "Authentication"
-2. Klik tab "Users"
-3. Klik "Add user"
-4. Masukkan email dan password
-5. Klik "Add user"
+2. Klik tab "Settings"
+3. Scroll ke bagian "Authorized domains"
+4. Pastikan domain berikut sudah ada:
+   - `localhost` (untuk development)
+   - Domain production Anda (jika sudah ada)
 
 ### 6. Jalankan Aplikasi
 ```bash
@@ -51,13 +53,28 @@ npm run dev
 ```
 
 ## Fitur yang Tersedia:
-- ✅ Halaman login dengan email dan password
+- ✅ Halaman login dengan Google authentication
 - ✅ Halaman dashboard yang menampilkan nama user
 - ✅ Sistem autentikasi yang otomatis redirect
 - ✅ Tombol logout
 - ✅ Loading state saat proses autentikasi
 - ✅ Error handling untuk login gagal
+- ✅ UI/UX yang modern dan responsif
 
-## Catatan:
-- Pastikan domain Anda sudah ditambahkan ke "Authorized domains" di Firebase Console jika deploy ke production
-- Untuk development, `localhost` sudah otomatis diizinkan 
+## Keuntungan Google Authentication:
+- 🔐 **Lebih Aman**: Tidak perlu menyimpan password
+- 🚀 **Lebih Cepat**: One-click login
+- 📱 **User-Friendly**: Familiar dengan pengguna
+- 🛡️ **Two-Factor Auth**: Otomatis jika user mengaktifkan 2FA di Google
+- 📊 **Analytics**: Bisa melihat data login di Firebase Console
+
+## Catatan Penting:
+- **Popup Blocker**: Pastikan browser mengizinkan popup untuk domain Anda
+- **HTTPS Required**: Untuk production, domain harus menggunakan HTTPS
+- **Google Account**: User harus memiliki akun Google untuk login
+- **Testing**: Bisa test dengan akun Google pribadi atau buat akun test
+
+## Troubleshooting:
+- **Popup ditutup**: User menutup popup sebelum login selesai
+- **Popup diblokir**: Browser memblokir popup, izinkan popup untuk situs ini
+- **Domain tidak diizinkan**: Tambahkan domain ke "Authorized domains" di Firebase Console 
