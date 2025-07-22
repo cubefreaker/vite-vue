@@ -1,24 +1,10 @@
 <script>
 import { useAuth } from './composables/useAuth.js';
-import { watch } from 'vue';
-import { useRouter } from 'vue-router';
 
 export default {
   name: 'App',
   setup() {
     const { user, loading } = useAuth();
-    const router = useRouter();
-
-    // Watch for user authentication state changes
-    watch(user, (newUser) => {
-      if (newUser) {
-        // User is logged in, redirect to dashboard
-        router.push('/dashboard');
-      } else {
-        // User is not logged in, redirect to login
-        router.push('/');
-      }
-    });
 
     return {
       user,
